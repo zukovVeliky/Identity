@@ -1,0 +1,67 @@
+@page
+@model ZukovVeliky.Identity.Pages.Account.RolesUsers.SeznamEditRoleModel
+@{
+    ViewData["Title"] = "Uživatelské role";
+}
+
+<section class="admin-panel">
+    <h1 class="h3 mb-3">Uživatelské role</h1>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+    }
+
+    <form method="post" asp-page-handler="CreateRole" class="row g-2 align-items-end mb-4">
+        <div class="col-sm-8">
+            <label for="textRole" class="form-label">Název nové role</label>
+            <input id="textRole" name="textRole" type="text" class="form-control" required />
+        </div>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-dark w-100">Vytvořit roli</button>
+        </div>
+    </form>
+
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th class="text-end">Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Roles)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td class="text-end">
+                        @if (!ZukovVeliky.Identity.Pages.Account.RolesUsers.SeznamEditRoleModel.IsBuiltIn(item.Name))
+                        {
+                            <form method="post" asp-page-handler="Delete" class="d-inline js-confirm-delete" data-role-name="@item.Name">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Odstranit</button>
+                        </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted small">vestavěná</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.js-confirm-delete').forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                var name = form.getAttribute('data-role-name') || '';
+                if (!window.confirm('Opravdu odstranit roli „' + name + '“? Uživatelé ji ztratí.')) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+}

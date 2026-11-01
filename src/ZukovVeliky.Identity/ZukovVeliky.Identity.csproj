@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <RootNamespace>ZukovVeliky.Identity</RootNamespace>
+    <PackageId>ZukovVeliky.Identity</PackageId>
+    <Description>Hotová správa uživatelských účtů a rolí pro ASP.NET Core 8 s českým rozhraním.</Description>
+    <RepositoryUrl>https://github.com/zukovVeliky/Identity</RepositoryUrl>
+    <!-- The pages come from the ASP.NET Core Identity scaffolding, which leaves binding properties uninitialised. -->
+    <NoWarn>$(NoWarn);CS8618;CS8602;CS8604;CS8601;CS8603;CS8600</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <Using Include="Microsoft.AspNetCore.Builder" />
+    <Using Include="Microsoft.AspNetCore.Hosting" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.AspNetCore.Routing" />
+    <Using Include="Microsoft.Extensions.Configuration" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.Extensions.Hosting" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <InternalsVisibleTo Include="ZukovVeliky.Identity.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.18.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.16" />
+    <PackageReference Include="MimeKit" Version="4.18.2" />
+  </ItemGroup>
+
+</Project>

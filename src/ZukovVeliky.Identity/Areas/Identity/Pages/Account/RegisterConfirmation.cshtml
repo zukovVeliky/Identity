@@ -1,0 +1,16 @@
+﻿@page
+@model ZukovVeliky.Identity.Pages.Account.RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Potvrzení registrace";
+}
+
+<h1>Potvrzení registrace</h1>
+@if (Model.EmailSent)
+{
+    <p>Účet byl vytvořen. Na adresu <strong>@Model.Email</strong> jsme poslali e-mail s odkazem. Po kliknutí na odkaz se budete moci přihlásit.</p>
+    <p>E-mail nepřišel? Podívejte se i do složky s nevyžádanou poštou, případně si <a asp-page="./ResendEmailConfirmation">nechte poslat nový odkaz</a>.</p>
+}
+else
+{
+    <p>Účet byl vytvořen, ale potvrzovací e-mail se nepodařilo odeslat. Zkuste si <a asp-page="./ResendEmailConfirmation">nechat poslat nový odkaz</a> za chvíli znovu.</p>
+}

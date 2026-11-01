@@ -1,0 +1,26 @@
+@page
+@model ZukovVeliky.Identity.Pages.Account.RolesUsers.SeznamUsersModel
+@{
+    ViewData["Title"] = "Uživatelé";
+}
+
+<section class="admin-panel">
+    <h1 class="h3 mb-3">Uživatelé administrace</h1>
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>E-mail</th>
+                <th class="text-end">Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Uzivatele)
+            {
+                <tr>
+                    <td>@item.Email</td>
+                    <td class="text-end"><a asp-page="./UserEditRole" asp-route-cip="@Model.CodeIdUser(item.Id)" class="btn btn-outline-secondary btn-sm">Upravit role</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

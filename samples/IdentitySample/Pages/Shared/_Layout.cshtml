@@ -1,0 +1,44 @@
+@inject SignInManager<IdentityUser> SignIn
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] – ukázka</title>
+    <link rel="stylesheet" href="~/_content/ZukovVeliky.Identity/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand bg-light border-bottom mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">Ukázka</a>
+            <ul class="navbar-nav ms-auto align-items-center">
+                @if (SignIn.IsSignedIn(User))
+                {
+                    @if (User.IsInRole(Roles.Administrator))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/RolesUsers/SeznamUsers">Uživatelé</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/RolesUsers/SeznamEditRole">Role</a></li>
+                    }
+                    <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">Můj účet</a></li>
+                    <li class="nav-item">
+                        <form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                            <button type="submit" class="btn btn-link nav-link">Odhlásit</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrace</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Přihlášení</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
+        @RenderBody()
+    </main>
+    <script src="~/_content/ZukovVeliky.Identity/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/_content/ZukovVeliky.Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

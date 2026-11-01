@@ -1,0 +1,49 @@
+@page
+@model ZukovVeliky.Identity.Pages.Account.RolesUsers.UserEditRoleModel
+@{
+    ViewData["Title"] = "Role uživatele";
+}
+
+<section class="admin-panel">
+    <p class="mb-1"><a asp-page="./SeznamUsers">← Uživatelé</a></p>
+    <h1 class="h3 mb-3">Role uživatele @Model.Uzivatel.Email</h1>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+    }
+
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Stav</th>
+                <th class="text-end">Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Roles)
+            {
+                var inRole = Model.UserInRole(item.Name!);
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@(inRole ? "Přiřazena" : "—")</td>
+                    <td class="text-end">
+                        <form method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.Zakodovani(item.Id)" />
+                            <input type="hidden" name="cip" value="@Model.CIP" />
+                            @if (inRole)
+                            {
+                                <button type="submit" asp-page-handler="Remove" class="btn btn-outline-danger btn-sm">Odebrat roli</button>
+                            }
+                            else
+                            {
+                                <button type="submit" asp-page-handler="Add" class="btn btn-outline-secondary btn-sm">Přidat roli</button>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

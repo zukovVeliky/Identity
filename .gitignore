@@ -1,0 +1,24 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+TestResults/
+*.nupkg
+
+# Local databases and keys
+*.db
+*.db-shm
+*.db-wal
+*.mdf
+*.ldf
+App_Data/
+DataProtection-Keys/
+
+# Local settings, secrets are never committed
+appsettings.Development.json
+appsettings.Production.json
+appsettings.*.local.json
+*.local.md
+.env

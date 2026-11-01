@@ -1,0 +1,14 @@
+@page
+@{
+    ViewData["Title"] = "Ukázka správy účtů";
+}
+<h1>Ukázka správy účtů</h1>
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <p>Přihlášen: <strong>@User.Identity.Name</strong></p>
+    <p>Role: @(User.IsInRole(Roles.Administrator) ? "Administrator" : User.IsInRole(Roles.Editor) ? "Editor" : "žádná")</p>
+}
+else
+{
+    <p>Nejste přihlášeni. Zaregistrujte se nebo se přihlaste v horní liště.</p>
+}
