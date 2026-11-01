@@ -92,3 +92,7 @@ dotnet test Identity.sln
 ```
 
 Testy procházejí skutečné stránky včetně registrace, potvrzení e-mailu, rolí a blokování účtu.
+
+## Licence
+
+[MIT](LICENSE). Bootstrap, jQuery a jQuery Validation ve složce `src/ZukovVeliky.Identity/wwwroot/lib` mají vlastní licence uložené u souborů.

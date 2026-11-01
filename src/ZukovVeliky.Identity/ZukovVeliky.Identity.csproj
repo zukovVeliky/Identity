@@ -9,6 +9,7 @@
     <PackageId>ZukovVeliky.Identity</PackageId>
     <Description>Hotová správa uživatelských účtů a rolí pro ASP.NET Core 8 s českým rozhraním.</Description>
     <RepositoryUrl>https://github.com/zukovVeliky/Identity</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <!-- The pages come from the ASP.NET Core Identity scaffolding, which leaves binding properties uninitialised. -->
     <NoWarn>$(NoWarn);CS8618;CS8602;CS8604;CS8601;CS8603;CS8600</NoWarn>
   </PropertyGroup>
